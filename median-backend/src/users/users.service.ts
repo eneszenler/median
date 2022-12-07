@@ -26,10 +26,10 @@ export class UsersService {
       },
     });
 
-    if(user){
-      return user
-    }else{
-      return "User Not Found"
+    if (user) {
+      return { code: 201, status: 'Successful', data: user };
+    } else {
+      return { code: 400, status: 'Error' };
     }
   }
 

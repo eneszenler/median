@@ -6,21 +6,39 @@ import {
   SafeAreaView,
   Pressable,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import styles from './SignIn.style';
 import Input from '../../components/Input/Input';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch } from 'react-redux';
+import { reduxSignIn } from "../../redux/UserSlice";
+import { signIn } from "../../repositories/User";
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const navigation = useNavigation();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (email && password) {
-      console.log(email, password);
+      const response = await signIn(email, password);
+      if (response.code === 201) {
+        const jsonValue = JSON.stringify(response.data);
+        await AsyncStorage.setItem('user', jsonValue);
+        dispatch(reduxSignIn(jsonValue));
+        setEmail('');
+        setPassword('');
+      } else {
+        Alert.alert('Failed', 'Email or password wrong!');
+        setEmail('');
+        setPassword('');
+      }
     }
   };
 

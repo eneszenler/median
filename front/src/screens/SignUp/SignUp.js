@@ -11,6 +11,7 @@ import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import styles from './SignUp.style';
 import Input from '../../components/Input/Input';
+import {signUp} from '../../repositories/User';
 
 const SignUp = () => {
   const [fullName, setFullName] = useState('');
@@ -20,9 +21,15 @@ const SignUp = () => {
 
   const navigation = useNavigation();
 
-  const handleSubmit = () => {
-    if (email && password) {
-      console.log(email, password);
+  const handleSubmit = async () => {
+    if (email && password && fullName && userName) {
+      const response = await signUp(fullName, userName, email, password);
+      console.log(response);
+      navigation.navigate('SignIn');
+      setEmail('');
+      setPassword('');
+      setFullName('');
+      setUserName('');
     }
   };
 
@@ -56,9 +63,7 @@ const SignUp = () => {
         />
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={() => {
-            handleSubmit;
-          }}>
+          onPress={handleSubmit}>
           <Text style={styles.button}>Sign Up</Text>
         </TouchableOpacity>
         <Text onPress={() => navigation.navigate('SignIn')}>

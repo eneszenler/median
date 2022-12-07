@@ -18,6 +18,7 @@ const Input = ({
         onChangeText={onChangeText}
         defaultValue={defaultValue}
         secureTextEntry={securityPassword}
+        autoCapitalize="none"
       />
     </View>
   );

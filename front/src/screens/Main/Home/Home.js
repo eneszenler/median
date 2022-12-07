@@ -33,7 +33,6 @@ const Home = () => {
 
   const getData =async () => {
     const response = await getArticles()
-    console.log("asd",response);
     if(response){
       setData(response)
     }

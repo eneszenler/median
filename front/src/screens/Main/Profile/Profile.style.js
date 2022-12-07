@@ -39,17 +39,23 @@ export default StyleSheet.create({
     color: '#fff',
   },
   content: {
-    flex:0.8,
-    justifyContent:"center"
+    flex: 0.8,
+    justifyContent: 'center',
   },
   profileContainer: {
-    alignItems: 'center',
     marginBottom: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  ppChange: {
+    borderRadius: 50,
   },
   profile: {
     width: 100,
     height: 100,
     borderRadius: 50,
+    opacity: 0.7,
   },
   info: {
     flexDirection: 'row',
@@ -58,7 +64,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  icon: {},
+  ppIcon: {
+    position: "absolute",
+    fontSize: 48,
+    color: "#fff",
+  },
   infoTitle: {
     justifyContent: 'flex-start',
     fontSize: 18,
@@ -73,15 +83,56 @@ export default StyleSheet.create({
     width: '87%',
     marginTop: 30,
     marginBottom: -20,
-    marginStart:30,
-    marginEnd:30,
+    marginStart: 30,
+    marginEnd: 30,
     padding: 15,
     borderRadius: 25,
     backgroundColor: '#FFD372',
-    alignItems:"center"
+    alignItems: 'center',
   },
   button: {
     fontSize: 20,
     color: '#fff',
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 });

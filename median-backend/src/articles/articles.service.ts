@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { UserArticlesDto } from './dto/user-articles.dto';
 
 @Injectable()
 export class ArticlesService {
@@ -12,7 +13,16 @@ export class ArticlesService {
   }
 
   findAll() {
-    return this.prisma.article.findMany();
+    return this.prisma.article.findMany({ include: { author: true } });
+  }
+
+  findAllByUserId(userArticles: UserArticlesDto) {
+    return this.prisma.article.findMany({
+      include: { author: true },
+      where: {
+        authorId: userArticles.userId,
+      },
+    });
   }
 
   findOne(id: number) {
